@@ -1,0 +1,337 @@
+
+<h2 class="sr-only">アフィリエイト・紹介コードリンク集テンプレート（SNSボタン付き）</h2>
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+.page-header {
+  padding: 1.5rem 1rem 0.75rem;
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+  margin-bottom: 1rem;
+}
+.page-title {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  letter-spacing: -0.3px;
+  margin-bottom: 4px;
+}
+.page-sub {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.sns-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.sns-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 0.5px solid var(--color-border-secondary);
+  background: var(--color-background-primary);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.12s;
+  white-space: nowrap;
+}
+.sns-btn:active { opacity: 0.7; }
+.sns-btn svg { flex-shrink: 0; }
+
+.tabs {
+  display: flex;
+  gap: 6px;
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab-btn {
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 400;
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 0.5px solid var(--color-border-secondary);
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.tab-btn.active {
+  background: var(--color-background-primary);
+  border-color: var(--color-border-primary);
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.section { display: none; padding: 0 1rem; }
+.section.visible { display: block; }
+
+.section-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.card {
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-tertiary);
+  border-radius: var(--border-radius-lg);
+  padding: 1rem 1.25rem;
+  margin-bottom: 10px;
+}
+.card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.card-icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 17px;
+}
+.ic-green  { background: #EAF3DE; color: #3B6D11; }
+.ic-blue   { background: #E6F1FB; color: #185FA5; }
+.ic-amber  { background: #FAEEDA; color: #854F0B; }
+.ic-coral  { background: #FAECE7; color: #993C1D; }
+.ic-purple { background: #EEEDFE; color: #534AB7; }
+.ic-teal   { background: #E1F5EE; color: #0F6E56; }
+
+.card-meta { flex: 1; min-width: 0; }
+.card-name { font-size: 15px; font-weight: 500; color: var(--color-text-primary); line-height: 1.3; }
+.badge {
+  display: inline-block; font-size: 11px;
+  padding: 2px 8px; border-radius: 4px; margin-top: 3px;
+}
+.badge-bonus { background: #FAEEDA; color: #854F0B; }
+.badge-free  { background: #EAF3DE; color: #3B6D11; }
+.badge-point { background: #EEEDFE; color: #534AB7; }
+.badge-cash  { background: #E1F5EE; color: #0F6E56; }
+
+.card-desc { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 10px; }
+.card-code {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--color-background-secondary);
+  border-radius: var(--border-radius-md);
+  padding: 6px 10px; margin-bottom: 10px; font-size: 12px;
+}
+.code-label { color: var(--color-text-tertiary); flex-shrink: 0; }
+.code-value {
+  font-family: var(--font-mono); color: var(--color-text-primary);
+  font-weight: 500; letter-spacing: 0.04em; flex: 1;
+}
+.copy-btn {
+  font-size: 12px; color: var(--color-text-secondary);
+  border: 0.5px solid var(--color-border-secondary);
+  border-radius: 4px; background: var(--color-background-primary);
+  padding: 2px 8px; cursor: pointer; white-space: nowrap;
+}
+.cta-btn {
+  display: block; width: 100%; text-align: center;
+  font-size: 14px; font-weight: 500; padding: 9px;
+  border-radius: var(--border-radius-md);
+  border: 0.5px solid var(--color-border-secondary);
+  background: var(--color-background-primary);
+  color: var(--color-text-primary);
+  cursor: pointer; text-decoration: none;
+}
+.cta-btn i { margin-right: 4px; vertical-align: -2px; }
+
+.note-box {
+  background: var(--color-background-secondary);
+  border-left: 2px solid var(--color-border-secondary);
+  border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+  padding: 8px 12px; font-size: 12px;
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem; line-height: 1.5;
+}
+.footer-note {
+  text-align: center; font-size: 11px;
+  color: var(--color-text-tertiary); padding: 1rem; line-height: 1.5;
+}
+</style>
+
+<div class="page-header">
+  <div class="page-title">💰 おすすめ節約・副収入まとめ</div>
+  <div class="page-sub">登録だけでもらえる特典・実際に使って得したサービスだけ紹介しています</div>
+
+  <div class="sns-row">
+    <a class="sns-btn" href="https://www.instagram.com/" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+      Instagram
+    </a>
+    <a class="sns-btn" href="https://x.com/" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.265 5.638 5.9-5.638zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      X (Twitter)
+    </a>
+    <a class="sns-btn" href="https://www.threads.net/" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.587 1.5 12.01c0-3.577.85-6.43 2.527-8.487C5.886 1.2 8.626.009 12.154 0h.007c2.359.016 4.535.554 6.262 1.558 1.644.96 2.887 2.33 3.697 4.072l-2.223 1.208c-.618-1.323-1.552-2.395-2.74-3.086-1.277-.745-2.867-1.134-4.997-1.149-2.81.018-5.001.923-6.511 2.691C4.152 7.017 3.5 9.343 3.5 12.01c0 2.667.652 4.993 1.949 6.716 1.51 1.768 3.701 2.673 6.511 2.691 1.99.013 3.536-.42 4.749-1.321 1.41-1.046 2.137-2.59 2.137-4.49 0-1.204-.323-2.175-.959-2.887-.32-.363-.696-.641-1.115-.832-.162 1.16-.501 2.118-1.012 2.852-.717 1.022-1.742 1.588-2.952 1.636-1.005.04-1.959-.3-2.684-.955-.78-.706-1.19-1.7-1.155-2.8.066-2.047 1.7-3.657 3.854-3.736.73-.026 1.458.108 2.157.399.072.03.143.062.214.096-.009-.31-.014-.626-.007-.938.022-.946.26-1.81.685-2.47.516-.797 1.32-1.29 2.394-1.466a5.71 5.71 0 0 1 .94-.07c.897 0 1.765.198 2.435.557l-.918 1.979c-.358-.194-.845-.286-1.413-.286-.169 0-.331.01-.48.03-.521.08-.89.31-1.13.703-.241.393-.367.963-.376 1.697v.014c.004.165.013.327.025.488.523.486.936 1.065 1.222 1.72.35.806.527 1.742.527 2.783 0 2.524-.957 4.617-2.77 6.054-1.493 1.184-3.461 1.796-5.855 1.78z"/></svg>
+      Threads
+    </a>
+    <a class="sns-btn" href="https://www.hatena.ne.jp/" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.2 0H4.8A4.8 4.8 0 0 0 0 4.8v14.4A4.8 4.8 0 0 0 4.8 24h14.4A4.8 4.8 0 0 0 24 19.2V4.8A4.8 4.8 0 0 0 19.2 0zm-7.2 18.24a1.44 1.44 0 1 1 0-2.88 1.44 1.44 0 0 1 0 2.88zm1.44-5.76H10.56V5.76h2.88z"/></svg>
+      はてなブログ
+    </a>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('all', event)">すべて</button>
+  <button class="tab-btn" onclick="switchTab('invest', event)">投資・NISA</button>
+  <button class="tab-btn" onclick="switchTab('cashback', event)">還元・ポイント</button>
+  <button class="tab-btn" onclick="switchTab('saving', event)">節約・保険</button>
+  <button class="tab-btn" onclick="switchTab('travel', event)">旅行・レジャー</button>
+</div>
+
+<div class="section visible" id="sec-all">
+  <div class="note-box">
+    <strong>※ 紹介コードを入力すると、あなたも私もボーナスがもらえます。</strong><br>使ってみて良かったものだけを紹介しています。
+  </div>
+
+  <div class="section-label">📈 投資・NISA</div>
+  <div class="card" data-cat="invest">
+    <div class="card-head">
+      <div class="card-icon ic-green"><i class="ti ti-trending-up" aria-hidden="true"></i></div>
+      <div class="card-meta">
+        <div class="card-name">SBI証券</div>
+        <span class="badge badge-bonus">口座開設で〇〇円プレゼント</span>
+      </div>
+    </div>
+    <div class="card-desc">新NISAの口座開設に使っています。手数料が安く、積立の自動設定が簡単。月1万円から始めやすい。</div>
+    <div class="card-code">
+      <span class="code-label">紹介コード</span>
+      <span class="code-value" id="code-sbi">XXXXXX</span>
+      <button class="copy-btn" onclick="copyCode('code-sbi', this)">コピー</button>
+    </div>
+    <a class="cta-btn" href="#" onclick="return false;"><i class="ti ti-external-link"></i>詳細・登録はこちら →</a>
+  </div>
+
+  <div class="card" data-cat="invest">
+    <div class="card-head">
+      <div class="card-icon ic-blue"><i class="ti ti-building-bank" aria-hidden="true"></i></div>
+      <div class="card-meta">
+        <div class="card-name">楽天証券</div>
+        <span class="badge badge-point">楽天ポイントで積立OK</span>
+      </div>
+    </div>
+    <div class="card-desc">楽天カードでの積立でポイント二重取りができる。楽天経済圏の人はまずここから。</div>
+    <a class="cta-btn" href="#" onclick="return false;"><i class="ti ti-external-link"></i>詳細・登録はこちら →</a>
+  </div>
+
+  <div class="section-label">💳 還元・ポイント</div>
+  <div class="card" data-cat="cashback">
+    <div class="card-head">
+      <div class="card-icon ic-amber"><i class="ti ti-credit-card" aria-hidden="true"></i></div>
+      <div class="card-meta">
+        <div class="card-name">PayPayカード</div>
+        <span class="badge badge-bonus">入会特典〇〇円相当</span>
+      </div>
+    </div>
+    <div class="card-desc">日常の買い物がPayPayポイントでどんどん貯まる。家族カード追加で還元率アップ。</div>
+    <div class="card-code">
+      <span class="code-label">紹介コード</span>
+      <span class="code-value" id="code-paypay">XXXXXX</span>
+      <button class="copy-btn" onclick="copyCode('code-paypay', this)">コピー</button>
+    </div>
+    <a class="cta-btn" href="#" onclick="return false;"><i class="ti ti-external-link"></i>詳細・登録はこちら →</a>
+  </div>
+
+  <div class="card" data-cat="cashback">
+    <div class="card-head">
+      <div class="card-icon ic-purple"><i class="ti ti-gift" aria-hidden="true"></i></div>
+      <div class="card-meta">
+        <div class="card-name">モッピー</div>
+        <span class="badge badge-free">無料登録＋紹介ボーナス</span>
+      </div>
+    </div>
+    <div class="card-desc">ポイントサイト経由でカード作成・口座開設するだけで数千〜数万ポイントが一気に貯まる。</div>
+    <div class="card-code">
+      <span class="code-label">紹介コード</span>
+      <span class="code-value" id="code-moppy">XXXXXX</span>
+      <button class="copy-btn" onclick="copyCode('code-moppy', this)">コピー</button>
+    </div>
+    <a class="cta-btn" href="#" onclick="return false;"><i class="ti ti-external-link"></i>詳細・登録はこちら →</a>
+  </div>
+
+  <div class="section-label">🛡️ 節約・保険</div>
+  <div class="card" data-cat="saving">
+    <div class="card-head">
+      <div class="card-icon ic-teal"><i class="ti ti-shield-check" aria-hidden="true"></i></div>
+      <div class="card-meta">
+        <div class="card-name">マネーフォワード ME</div>
+        <span class="badge badge-free">1ヶ月無料トライアル</span>
+      </div>
+    </div>
+    <div class="card-desc">家計簿アプリ。銀行・カード・証券を全部まとめて見られる。「どこに使っているか」が一目瞭然で節約しやすい。</div>
+    <a class="cta-btn" href="#" onclick="return false;"><i class="ti ti-external-link"></i>詳細・登録はこちら →</a>
+  </div>
+
+  <div class="section-label">✈️ 旅行・レジャー</div>
+  <div class="card" data-cat="travel">
+    <div class="card-head">
+      <div class="card-icon ic-coral"><i class="ti ti-plane" aria-hidden="true"></i></div>
+      <div class="card-meta">
+        <div class="card-name">Hotels.com</div>
+        <span class="badge badge-cash">10泊で1泊無料</span>
+      </div>
+    </div>
+    <div class="card-desc">家族旅行の宿はここで予約。10泊ごとに1泊タダになるスタンプ制度がお得。紹介リンク経由でさらに割引あり。</div>
+    <a class="cta-btn" href="#" onclick="return false;"><i class="ti ti-external-link"></i>詳細・登録はこちら →</a>
+  </div>
+</div>
+
+<div class="section" id="sec-invest"></div>
+<div class="section" id="sec-cashback"></div>
+<div class="section" id="sec-saving"></div>
+<div class="section" id="sec-travel"></div>
+
+<div class="footer-note">
+  ※ このページのリンクはアフィリエイト・紹介リンクを含みます。<br>サービスの利用料金はかかりません。
+</div>
+
+<script>
+const catMap = { invest:'投資・NISA', cashback:'還元・ポイント', saving:'節約・保険', travel:'旅行・レジャー' };
+
+function switchTab(cat, e) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+  if (cat === 'all') {
+    document.getElementById('sec-all').classList.add('visible');
+  } else {
+    const sec = document.getElementById('sec-' + cat);
+    sec.innerHTML = '<div class="section-label">' + catMap[cat] + '</div>';
+    const cards = document.querySelectorAll('#sec-all .card[data-cat="' + cat + '"]');
+    if (!cards.length) {
+      sec.innerHTML += '<div style="padding:2rem 0;text-align:center;color:var(--color-text-tertiary);font-size:14px;">このカテゴリは近日追加予定です</div>';
+    } else {
+      cards.forEach(c => sec.appendChild(c.cloneNode(true)));
+    }
+    sec.classList.add('visible');
+  }
+}
+
+function copyCode(id, btn) {
+  const val = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(val).catch(()=>{}).finally(()=>{
+    btn.textContent = 'コピー済';
+    setTimeout(() => btn.textContent = 'コピー', 1500);
+  });
+}
+</script>
